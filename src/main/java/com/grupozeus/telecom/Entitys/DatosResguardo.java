@@ -1,6 +1,7 @@
 package com.grupozeus.telecom.Entitys;
 
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,5 +44,23 @@ public class DatosResguardo {
     @ManyToOne
     @JoinColumn(name="idUnidad")
     private Unidad unidad;
+
+    @Override
+public boolean equals(Object o) {
+    if(this == o){
+        return true;
+    }
+    if(o == null||getClass() != o.getClass()){
+        return false;
+    }
+    DatosResguardo datosResguardo = (DatosResguardo) o;
+    return Objects.equals(idResguardo, datosResguardo.idResguardo);
+
+}
+
+@Override
+public int hashCode() {
+    return Objects.hash(idResguardo);
+}
 
 }

@@ -1,5 +1,8 @@
 package com.grupozeus.telecom.Entitys;
 
+import java.io.Serializable;
+import java.util.Objects;
+
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +18,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Inventario {
+public class Inventario implements Serializable {
     
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,4 +35,23 @@ private String estado;
 @JoinColumn(name="idsil")
 private Sil sil;
 
+@Override
+public boolean equals(Object o) {
+    if(this == o){
+        return true;
+    }
+    if(o == null||getClass() != o.getClass()){
+        return false;
+    }
+    Inventario inventario = (Inventario) o;
+    return Objects.equals(idinventario, inventario.idinventario);
+
 }
+
+@Override
+public int hashCode() {
+    return Objects.hash(idinventario);
+}
+
+}
+

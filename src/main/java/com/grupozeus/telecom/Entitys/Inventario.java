@@ -3,7 +3,7 @@ package com.grupozeus.telecom.Entitys;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.annotation.Generated;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.annotations.ManyToAny;
+
 
 import lombok.Data;
 

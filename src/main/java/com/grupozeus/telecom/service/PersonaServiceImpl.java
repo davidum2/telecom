@@ -1,48 +1,24 @@
 package com.grupozeus.telecom.service;
 
-import java.util.List;
 
 import com.grupozeus.telecom.Entitys.Persona;
+import com.grupozeus.telecom.commons.GenericServiceImplements;
 import com.grupozeus.telecom.repository.IPersona;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PersonaServiceImpl implements IPersonaService {
+public class PersonaServiceImpl extends GenericServiceImplements<Persona, Integer> implements IPersonaService {
 
     @Autowired
-    public IPersona personaDao;
-    
-    @Override
-    public List<Persona> listarTodos() {
-        
-        return personaDao.findAll();
-    }
+    private IPersona personaDao;
 
     @Override
-    public Persona encontrarPorId(Integer id) {
-        return personaDao.findById(id).orElse(null);
+    public CrudRepository<Persona, Integer> getDao() {
+        return personaDao;
     }
-
-    @Override
-    public void guardar(Persona persona) {
-        personaDao.save(persona);
-        
-    }
-
-    @Override
-    public void actualizar(Persona persona) {
-        personaDao.save(persona);
-        
-    }
-
-    @Override
-    public void borrar(Persona persona) {
-        personaDao.delete(persona);
-        
-    }
-    
 
 
 }

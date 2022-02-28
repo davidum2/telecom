@@ -8,11 +8,11 @@ public interface IRolService {
 
     public List<Rol> listarTodos();
 
-    public Rol encontrarPorId();
+    public Rol encontrarPorId(int id);
 
-    public void guardar();
+    public void guardar(Rol rol);
 
-    public void actualizar();
+    public void actualizar(Rol rol);
 
     public void borrar();
 

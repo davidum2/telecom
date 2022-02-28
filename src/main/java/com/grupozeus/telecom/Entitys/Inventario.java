@@ -32,7 +32,7 @@ private String codigoBarras;
 private String estado;
 
 @ManyToOne
-@JoinColumn(name="idsil")
+@JoinColumn(name="sil_idsil")
 private Sil sil;
 
 @Override

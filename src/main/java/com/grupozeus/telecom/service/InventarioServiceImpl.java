@@ -1,6 +1,9 @@
 package com.grupozeus.telecom.service;
 
+import java.util.List;
+
 import com.grupozeus.telecom.Entitys.Inventario;
+import com.grupozeus.telecom.Entitys.Sil;
 import com.grupozeus.telecom.commons.GenericServiceImplements;
 import com.grupozeus.telecom.repository.IInventario;
 
@@ -14,6 +17,9 @@ public class InventarioServiceImpl extends GenericServiceImplements<Inventario, 
     @Autowired
     private IInventario inventarioDao;
 
+    @Autowired
+    private ISilService silDao;
+
     @Override
     public Inventario encontrarPorCodigoBarras(String codigoBarras) {
         return inventarioDao.findByCodigoBarras(codigoBarras);
@@ -23,5 +29,13 @@ public class InventarioServiceImpl extends GenericServiceImplements<Inventario, 
     public CrudRepository<Inventario, Integer> getDao() {
         return inventarioDao;
     }
+
+    @Override
+    public List<Inventario> encontrarPorSil(String idSil) {
+       Sil sil = silDao.get(idSil);
+    return inventarioDao.findBySil(sil);
+    }
+
+ 
     
 }

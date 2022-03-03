@@ -18,7 +18,7 @@ public class SilServiceImpl extends GenericServiceImplements<Sil, String> implem
 
     @Override
     public List<Sil> findByDescripcion(String descripcion) {
-        return silDao.findByDescripcion(descripcion);
+        return silDao.findByDescripcionContaining(descripcion);
     }
 
     @Override

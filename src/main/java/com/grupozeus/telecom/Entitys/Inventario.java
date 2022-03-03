@@ -31,6 +31,8 @@ private String codigoBarras;
 
 private String estado;
 
+private String ubicacion;
+
 @ManyToOne
 @JoinColumn(name="sil_idsil")
 private Sil sil;

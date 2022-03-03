@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -34,10 +35,19 @@ public class InventarioRest {
             return new ResponseEntity<Inventario>(inventario,HttpStatus.OK);
         }
 
-        @GetMapping(value = "/busqueda/{codigoBarra}")
+        @GetMapping(value = "/busqueda/cb/{codigoBarra}")
         public ResponseEntity<Inventario>  seleccionarInventaroPorCodigoBarras(@PathVariable("codigoBarra") String codigoBarras){
             Inventario inventario = inventarioService.encontrarPorCodigoBarras(codigoBarras);
             return new ResponseEntity<Inventario>(inventario,HttpStatus.OK);
+        }
+
+
+
+        @GetMapping(value = "/busqueda/sil/{sil}")
+        @ResponseStatus(HttpStatus.OK)
+        public List<Inventario>  seleccionarInventaroPorSil(@PathVariable("sil") String idSil){
+            List<Inventario> inventario = inventarioService.encontrarPorSil(idSil);
+            return inventario;
         }
     
         @PostMapping(value = "/guardarInventario")

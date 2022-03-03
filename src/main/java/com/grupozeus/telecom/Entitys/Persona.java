@@ -20,6 +20,7 @@ public class Persona {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_persona")
     private int idpersona;
 
     private String matricula;

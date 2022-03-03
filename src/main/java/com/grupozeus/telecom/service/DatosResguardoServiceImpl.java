@@ -1,47 +1,25 @@
 package com.grupozeus.telecom.service;
 
-import java.util.List;
+
 
 import com.grupozeus.telecom.Entitys.DatosResguardo;
+import com.grupozeus.telecom.commons.GenericServiceImplements;
 import com.grupozeus.telecom.repository.IDatosResguardo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DatosResguardoServiceImpl implements IDatosResguardoService {
+public class DatosResguardoServiceImpl extends GenericServiceImplements<DatosResguardo, Long> implements IDatosResguardoService {
 
     @Autowired
     public IDatosResguardo datos;
 
     @Override
-    public List<DatosResguardo> listarTodos() {
+    public CrudRepository<DatosResguardo, Long> getDao() {
         
-        return datos.findAll();
-    }
-
-    @Override
-    public DatosResguardo encontrarPorId(Long id) {
-        
-        return datos.findById(id).orElse(null);
-    }
-
-    @Override
-    public void guardar(DatosResguardo datosResguardo) {
-        datos.save(datosResguardo);
-        
-    }
-
-    @Override
-    public void actualizar(DatosResguardo datosResguardo) {
-        datos.save(datosResguardo);
-        
-    }
-
-    @Override
-    public void borrar(DatosResguardo datosResguardo) {
-        datos.delete(datosResguardo);
-        
+        return datos;
     }
     
 }

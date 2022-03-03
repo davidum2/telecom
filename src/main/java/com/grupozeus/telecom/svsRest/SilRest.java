@@ -8,6 +8,7 @@ import com.grupozeus.telecom.service.ISilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,12 +33,28 @@ public class SilRest {
         @GetMapping(value = "/{id}")
         public ResponseEntity<Sil>  seleccionarSilPorId(@PathVariable("id") String id){
             Sil sil = silService.get(id);
-            return new ResponseEntity<Sil>(sil,HttpStatus.OK);
+            if (sil != null){
+                return new ResponseEntity<Sil>(sil,HttpStatus.OK);
+            }
+            return new ResponseEntity<Sil>(sil, HttpStatus.NOT_FOUND);
+            
         }
 
         @GetMapping(value = "/buscar/{descripcion}")
-        public List<Sil>  seleccionarSilPorDescripcion(@PathVariable("descripcion") String descripcion){
-            return  silService.findByDescripcion(descripcion); 
+        public ResponseEntity<List<Sil>>  seleccionarSilPorDescripcion(@PathVariable("descripcion") String descripcion){
+            List<Sil> listResult = silService.findByDescripcion(descripcion); 
+            if (listResult == null || listResult.isEmpty()){
+                System.out.println("no encontrado");
+                return new ResponseEntity<List<Sil>>(listResult, HttpStatus.NOT_FOUND);
+            }else{
+                
+                for (Sil s  : listResult) {
+                    System.out.println(s.getDescripcion());
+                }
+                return  new ResponseEntity<List<Sil>>(listResult, HttpStatus.OK);
+            }
+
+            
         }
     
         @PostMapping(value = "/guardarSil")
@@ -55,7 +72,7 @@ public class SilRest {
             }else{
                 return new ResponseEntity<Sil>(sil, HttpStatus.INTERNAL_SERVER_ERROR);
             }
-    
+            
             return new ResponseEntity<Sil>(sil, HttpStatus.OK);
         }   
 }

@@ -22,7 +22,7 @@ public class DatosResguardo {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idresguardo")
+    @Column(name = "id_resguardo")
     private int idResguardo;
 
     private Date fecha;
@@ -30,19 +30,19 @@ public class DatosResguardo {
     private int estado;
 
     @OneToOne
-    @JoinColumn(name="idPersona")
+    @JoinColumn(name="persona_id_persona")
     private Persona resguardante;
 
     @ManyToOne
-    @JoinColumn(name="idRol")
+    @JoinColumn(name="rol_id_rol")
     private Persona controlador;
     
     @ManyToOne
-    @JoinColumn(name="idRol1")
+    @JoinColumn(name="rol_id_rol1")
     private Persona subsidiario;
     
     @ManyToOne
-    @JoinColumn(name="idUnidad")
+    @JoinColumn(name="unidad_id_unidad")
     private Unidad unidad;
 
     @Override

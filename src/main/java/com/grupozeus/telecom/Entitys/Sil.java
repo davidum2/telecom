@@ -2,6 +2,7 @@ package com.grupozeus.telecom.Entitys;
 
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 
@@ -28,6 +29,9 @@ private String idsil;
 private String descripcion;
 
 private double valor;
+
+@Column(name="sil_corto")
+private String silCorto;
 
 
 

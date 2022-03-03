@@ -1,20 +1,13 @@
 package com.grupozeus.telecom.service;
 
-import java.util.List;
+
 
 import com.grupozeus.telecom.Entitys.Unidad;
+import com.grupozeus.telecom.commons.GenericServiceAPI;
 
-public interface IUnidadService {
+public interface IUnidadService extends GenericServiceAPI<Unidad, Long>{
     
-    public List<Unidad> listarTodos();
-
-    public Unidad encontrarPorId();
-
-    public void guardar();
-
-    public void actualizar();
-
-    public void borrar();
+    
 
 
 }

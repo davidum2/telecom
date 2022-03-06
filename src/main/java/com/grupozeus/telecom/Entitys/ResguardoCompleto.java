@@ -26,7 +26,7 @@ public class ResguardoCompleto implements Serializable {
     
     @Id
     @ManyToOne
-    @JoinColumn(name="idresguardo")
+    @JoinColumn(name="datos_resguardo_id_resguardo")
     private DatosResguardo datosResguardo;
 
     public ResguardoCompleto(Inventario inventario, DatosResguardo datosResguardo) {

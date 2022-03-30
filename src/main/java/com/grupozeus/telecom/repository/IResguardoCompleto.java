@@ -2,7 +2,6 @@ package com.grupozeus.telecom.repository;
 
 import java.util.List;
 
-import com.grupozeus.telecom.Entitys.Inventario;
 import com.grupozeus.telecom.Entitys.ResguardoCompleto;
 import com.grupozeus.telecom.Entitys.ResguradoCompletoPK;
 

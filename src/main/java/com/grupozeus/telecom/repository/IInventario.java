@@ -14,5 +14,5 @@ public interface IInventario extends JpaRepository<Inventario, Integer> {
 
     public List<Inventario> findBySil(Sil sil);
 
-   
+       
 }

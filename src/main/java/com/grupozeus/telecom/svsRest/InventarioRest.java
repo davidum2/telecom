@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/Inventario")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 public class InventarioRest {
    
    
@@ -32,20 +32,13 @@ public class InventarioRest {
             return inventarioService.getAll();
         }
     
-        @GetMapping("/{id}")
+        @GetMapping("/buscarPorId/{id}")
         public ResponseEntity<Inventario>  seleccionarInventarioPorId(@PathVariable("id") Integer id){
             Inventario inventario = inventarioService.get(id);
             return new ResponseEntity<Inventario>(inventario,HttpStatus.OK);
         }
 
-        @PutMapping("/actualizarBajoResguardo/{id}")
-        public ResponseEntity<Inventario>  actualizarBajoResguardo(@PathVariable("id") Integer id){
-            Inventario inventario = inventarioService.get(id);
-            inventario.setUbicacion("Bajo resguardo");
-            inventarioService.save(inventario);
-            return new ResponseEntity<Inventario>(inventario,HttpStatus.OK);
-        }
-        
+          
 
 
         @GetMapping(value = "/busqueda/cb/{codigoBarra}")
@@ -63,7 +56,7 @@ public class InventarioRest {
             return inventario;
         }
     
-        @PostMapping(value = "/guardarInventario")
+        @PostMapping(value = "/guardarInventario/")
         public ResponseEntity<Inventario> save(@RequestBody Inventario inventario){
             Inventario obj = inventarioService.save(inventario);
             return new ResponseEntity<Inventario>(obj, HttpStatus.OK);

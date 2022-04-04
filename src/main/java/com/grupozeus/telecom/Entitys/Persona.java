@@ -44,6 +44,10 @@ public class Persona {
 
     private String unidad;
 
+    public String getAbreviadoCompleto(){
+        return this.gradoAbreviado != null && this.empleoAbreviado != null &&  this.nombreCompleto != null ?
+                this.gradoAbreviado + " " + this.empleoAbreviado + " " + this.nombreCompleto : "---";
+    }
 
 
    

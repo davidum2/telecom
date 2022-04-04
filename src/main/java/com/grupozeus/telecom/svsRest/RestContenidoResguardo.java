@@ -2,6 +2,8 @@ package com.grupozeus.telecom.svsRest;
 
 import java.util.List;
 
+import org.springframework.core.io.Resource;
+
 import com.grupozeus.telecom.Entitys.ContenidoResguardo;
 import com.grupozeus.telecom.service.IContenidoResguardoService;
 import com.grupozeus.telecom.service.IResguardosPDFService;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -45,6 +48,12 @@ public class RestContenidoResguardo {
         contenidoDao.save(contenidoResguardo);
         return new ResponseEntity<ContenidoResguardo>(contenidoResguardo, HttpStatus.OK);
 
+    }
+
+    @GetMapping("/exportPDF/")
+    public ResponseEntity<Resource> exportResguardo(int id , int idpersona){
+        Long idResguardoPDF = (long) id;
+     return contenidoDao.exportResguardo(idResguardoPDF, idpersona);
     }
 
     @GetMapping(value = "/delete/{id}")

@@ -35,4 +35,6 @@ public class ContenidoResguardo {
     @ManyToOne (cascade = {CascadeType.MERGE})
     @JoinColumn(name="resguardospdf_idresguardospdf")
     private ResguardosPDF resguardoPDF;
+
+    
 }

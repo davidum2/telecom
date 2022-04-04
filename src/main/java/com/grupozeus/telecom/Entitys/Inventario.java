@@ -3,7 +3,7 @@ package com.grupozeus.telecom.Entitys;
 import java.io.Serializable;
 import java.util.Objects;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +33,7 @@ private String estado;
 
 private String ubicacion;
 
-@ManyToOne
+@ManyToOne (cascade = {CascadeType.ALL})
 @JoinColumn(name="sil_idsil")
 private Sil sil;
 

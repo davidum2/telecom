@@ -50,7 +50,10 @@ public class Persona {
     }
 
 
-   
+   public String getGradoYEmpleoAbreviado(){
+    return this.gradoAbreviado != null && this.empleoAbreviado != null ?
+    this.gradoAbreviado + " " + this.empleoAbreviado : "---";
+   }
 
 
 }

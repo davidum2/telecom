@@ -66,6 +66,7 @@ public class ContenidoResguardoServiceImpl extends GenericServiceImplements<Cont
         final HashMap<String, Object> parameters = new HashMap<>();
         parameters.put("responsableAbreviado", resguardosPDF.getResguardante().getAbreviadoCompleto());
         parameters.put("ds", new JRBeanArrayDataSource(cResguardo.toArray()));
+        parameters.put("valorTotal", resguardosPDF.getValorTotal());
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, new JREmptyDataSource());
         byte[] reporte = JasperExportManager.exportReportToPdf(jasperPrint);

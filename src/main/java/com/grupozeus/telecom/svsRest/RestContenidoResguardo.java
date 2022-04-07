@@ -53,6 +53,7 @@ public class RestContenidoResguardo {
     @GetMapping("/exportPDF/")
     public ResponseEntity<Resource> exportResguardo(int id , int idpersona){
         Long idResguardoPDF = (long) id;
+        System.out.println(id + " aqui hay un numero " + idpersona);
      return contenidoDao.exportResguardo(idResguardoPDF, idpersona);
     }
 

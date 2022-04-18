@@ -2,6 +2,8 @@ package com.grupozeus.telecom.service;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -61,8 +64,11 @@ public class ContenidoResguardoServiceImpl extends GenericServiceImplements<Cont
       
     if (cResguardo != null) {
       try {
+        LocalDate fecha = LocalDate.now();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd ' de ' MMMM ' de ' yyyy"); 
+
         
-        Date fecha; 
+        
         ContenidoResguardo datos = cResguardo.get(0);  
         final ResguardosPDF resguardosPDF = datos.getResguardoPDF();
         final File file = ResourceUtils.getFile("classpath:Resguardo2.jasper");
@@ -74,8 +80,8 @@ public class ContenidoResguardoServiceImpl extends GenericServiceImplements<Cont
         parameters.put("responsableAbreviado", resguardosPDF.getResguardante().getAbreviadoCompleto());
         parameters.put("ds", new JRBeanArrayDataSource(cResguardo.toArray()));
         parameters.put("valorTotal", resguardosPDF.getValorTotal());
-        parameters.put("cantidadBienes", resguardosPDF.getCantidadArticulos();
-        parameters.put("fecha", fecha);
+        parameters.put("cantidadBienes", resguardosPDF.getCantidadArticulos());
+        parameters.put("fecha", fecha.format(format));
         parameters.put("cargoRolControlador", controlador.getPersona().getGradoYEmpleoAbreviado() 
                                       + " " + controlador.getDescripcion());
                                     //  "(" + controlador.getPersona().getMatricula() +")"
@@ -92,7 +98,7 @@ public class ContenidoResguardoServiceImpl extends GenericServiceImplements<Cont
         JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, new JREmptyDataSource());
         byte[] reporte = JasperExportManager.exportReportToPdf(jasperPrint);
         String sdf = (new SimpleDateFormat("dd/MM/yyyy")).format(new Date());
-        StringBuilder stringBuilder = new StringBuilder().append("InvoicePDF:");
+        StringBuilder stringBuilder = new StringBuilder().append("ResguardoPDF:");
         ContentDisposition contentDisposition = ContentDisposition.builder("attachment")
             .filename(stringBuilder.append(resguardosPDF.getIdResguardosPDF())
                 .append("generateDate:")

@@ -1,6 +1,7 @@
 package com.grupozeus.telecom.service;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -73,10 +74,11 @@ public class ContenidoResguardoServiceImpl extends GenericServiceImplements<Cont
         final ResguardosPDF resguardosPDF = datos.getResguardoPDF();
         final File file = ResourceUtils.getFile("classpath:Resguardo2.jasper");
 
-       // final File imgLogo = ResourceUtils.getFile("classpath:images/logoCevicheria.png");
+        final File image = ResourceUtils.getFile("classpath:images/sedena.png");
         final JasperReport report = (JasperReport) JRLoader.loadObject(file);
 
         final HashMap<String, Object> parameters = new HashMap<>();
+        parameters.put("imgLogo", new FileInputStream(image));
         parameters.put("responsableAbreviado", resguardosPDF.getResguardante().getAbreviadoCompleto());
         parameters.put("ds", new JRBeanArrayDataSource(cResguardo.toArray()));
         parameters.put("valorTotal", resguardosPDF.getValorTotal());
@@ -90,6 +92,7 @@ public class ContenidoResguardoServiceImpl extends GenericServiceImplements<Cont
         parameters.put("matriculaSubsidiario", "(" + subsidiario.getPersona().getMatricula() +")" );
         parameters.put("gradoResponsable", resguardosPDF.getResguardante().getGradoYEmpleoAbreviado());
         parameters.put("nombreResponsable", resguardosPDF.getResguardante().getNombreCompleto());
+        parameters.put("matriculaResponsable", "(" + resguardosPDF.getResguardante().getMatricula()+")");
         parameters.put("matriculaResponsable", "(" + resguardosPDF.getResguardante().getMatricula()+")");
         parameters.put("nombreSubsidiario", subsidiario.getPersona().getNombreCompleto());
         parameters.put("empleoSubsidiario", subsidiario.getPersona().getGradoYEmpleoAbreviado() + subsidiario.getDescripcion());

@@ -65,11 +65,14 @@
 	</dependencies>
 
 	<build>
+	<finalName>Transmisiones</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+				<source>1.8</source>
+					<target>1.8</target>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
@@ -77,6 +80,18 @@
 						</exclude>
 					</excludes>
 				</configuration>
+				<!-- configuracion para war<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					 <excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration> -->
 			</plugin>
 		</plugins>
 	</build>
